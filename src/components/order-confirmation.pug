@@ -14,19 +14,19 @@ section.order-confirmation
 
                 .order-confirmation__parameters
                     span Тип заходу
-                    span День народження
+                    span#confirmEventType —
 
                     span Дата і час
-                    span 12 травня 2027, 18:00
+                    span#confirmDateTime —
 
                     span Місто проведення
-                    span м. Київ, Київська область
+                    span#confirmCity —
 
                     span Кількість гостей
-                    span 30
+                    span#confirmGuests —
 
                     span Бюджет
-                    span 50 000 грн
+                    span#confirmBudget —
 
             // Локація
             .order-confirmation__card
@@ -34,51 +34,16 @@ section.order-confirmation
                     h3 Локація
                     a(href="/order-location.html") Редагувати
 
-                .order-confirmation__location
-                    img.order-confirmation__location-image(
-                        src="/images/shtandart.png"
-                        alt="Ресторан Штандарт"
-                    )
-
-                    .order-confirmation__location-info
-                        h4 Ресторан “Штандарт”
-
-                        .order-confirmation__location-meta
-                            .order-confirmation__meta-item
-                                img(src="/images/map-pin.png" alt="")
-                                span Київ, вул. Ревуцького, 2Г
-
-                            .order-confirmation__meta-item
-                                img(src="/images/users.png" alt="")
-                                span До 200 гостей
+                .order-confirmation__location#confirmLocation
+                    p Завантаження локації…
 
             // Послуги
             .order-confirmation__card
                 .order-confirmation__card-heading
                     h3 Послуги
                     a(href="/order-services.html") Редагувати
-
-                .order-confirmation__services
-
-                    .order-confirmation__service
-                        img(
-                            src="/images/host-oleksandr.png"
-                            alt="Олександр Коваль"
-                        )
-
-                        .order-confirmation__service-info
-                            h4 Олександр Коваль
-                            span Ведучий
-
-                    .order-confirmation__service
-                        img(
-                            src="/images/photographer-veronika.png"
-                            alt="Вероніка Бойко"
-                        )
-
-                        .order-confirmation__service-info
-                            h4 Вероніка Бойко
-                            span Фотограф
+                .order-confirmation__services#confirmServices
+                    p Завантаження послуг…
 
         // Права колонка
         .order-confirmation__right
@@ -89,15 +54,15 @@ section.order-confirmation
 
                 .order-confirmation__summary-row
                     span Локація
-                    span 12 000 грн
+                    span#confirmLocationPrice —
 
                 .order-confirmation__summary-row
                     span Послуги
-                    span 15 000 грн
+                    span#confirmServicesPrice —
 
                 .order-confirmation__total
                     h3 ЗАГАЛЬНА ВАРТІСТЬ:
-                    strong 27 000 грн
+                    strong#confirmTotal —
 
             // Контактні дані
             form.order-confirmation__form(id="confirmationForm")
@@ -125,5 +90,12 @@ section.order-confirmation
                     input(type="checkbox" name="agreement" checked required)
                     span Я погоджуюся на обробку персональних даних відповідно до Політики конфіденційності.
 
-                a.order-confirmation__button(href="#order-success") Підтвердити замовлення
+                button.order-confirmation__button(type="submit") Підтвердити замовлення
                 include ../components/order-success.pug
+    .evently-confirm-modal#confirmBudgetModal(hidden role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle")
+        .evently-confirm-modal__panel
+            h2#confirmModalTitle Бюджет перевищено!
+            p#confirmBudgetMessage
+            .evently-confirm-modal__actions
+                button#confirmModalClose(type="button") Зрозуміло
+                a(href="/order.html") Змінити бюджет

@@ -268,4 +268,24 @@
     flex-shrink: 0;
 }
 
+// Додаткові стилі для динамічних карток Evently
+// Додати наприкінці src/scss/_order-locations.scss
+.order-locations {
+    &__results { min-width: 0; }
+    &__count { margin: 0 0 16px; font-size: 14px; font-weight: 600; line-height: 1.5; }
+    &__empty, &__status { margin: 0; padding: 14px 0; font-size: 14px; font-weight: 600; line-height: 1.5; }
+    &__meta span { min-width: 0; overflow-wrap: anywhere; }
+    &__description { font-size: 14px; font-weight: 500; line-height: 1.55; overflow-wrap: anywhere; }
+    &__image { object-fit: cover; border-radius: 12px; }
+}
+// Позначення локації, обраної на попередньому проходженні другого етапу
+.order-locations__card--selected {
+	border: 1px solid #F26B5E;
+}
+
+.order-locations__choose--selected {
+	background: #FFE8DA;
+	color: #F26B5E;
+}
+
 }

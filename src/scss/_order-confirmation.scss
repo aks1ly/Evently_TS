@@ -275,3 +275,16 @@ text-decoration: none;
         }
     }
 }
+
+.order-confirmation__notice, .order-confirmation__empty { font-size: 16px; font-weight: 500; color: #687084; }
+.order-confirmation__button:disabled { opacity: .5; cursor: not-allowed; }
+.evently-confirm-modal {
+	position: fixed; inset: 0; z-index: 9999; background: rgba(20, 30, 50, .55);
+	display: flex; align-items: center; justify-content: center; padding: 20px;
+	&[hidden] { display: none; }
+	&__panel { width: min(100%, 480px); background: #fff8f3; border-radius: 22px; padding: 32px; text-align: center; }
+	h2 { color: #f26b5e; margin: 0 0 16px; }
+	p { line-height: 1.6; }
+	&__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+	button, a { background: #f26b5e; color: white; padding: 14px 18px; border: 0; border-radius: 10px; font: inherit; cursor: pointer; text-decoration: none; }
+}

@@ -1,13 +1,8 @@
-.order__steps(class="order__steps--" + pageStep)
-    each step, index in ["Параметри заходу", "Локація", "Послуги", "Підтвердження замовлення"]
-        .order__step
-            if index + 1 < pageStep
-                a.order__step-number.order__step-number--completed(
-                    href=index === 0 ? "/order.html" : index === 1 ? "/order-location.html" : "/order-services.html"
-                ) ✓
-            else if index + 1 === pageStep
-                span.order__step-number.order__step-number--active= index + 1
-            else
-                span.order__step-number= index + 1
-
-            span.order__step-label= step
+.order__steps(class="order__steps--" + pageStep data-current-step=pageStep)
+	each step, index in ["Параметри заходу", "Локація", "Послуги", "Підтвердження замовлення"]
+		.order__step
+			if index + 1 === pageStep
+				span.order__step-number.order__step-number--active(aria-current="step" data-order-step=index + 1)= index + 1
+			else
+				a.order__step-number(href=["/order.html", "/order-location.html", "/order-services.html", "/order-confirmation.html"][index] data-order-step=index + 1 aria-label="Перейти до етапу: " + step)= index + 1
+			span.order__step-label= step

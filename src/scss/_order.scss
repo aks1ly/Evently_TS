@@ -341,4 +341,36 @@ input[type="number"] {
     text-decoration: none;
     box-sizing: border-box;
 }
+
+	&__steps--all-ready::after {
+		width: 75%;
+		background-color: $accent-color;
+	}
+
+.order__step-number--completed,
+.order__step-number--started {
+	background-color: $accent-color;
+	color: white;
+}
+
+}
+
+/* Навігація між доступними етапами */
+.order {
+	&__step-number {
+		&[href] {
+			cursor: pointer;
+			text-decoration: none;
+		}
+
+		&--locked {
+			cursor: default;
+			pointer-events: none;
+		}
+
+		&[href]:focus-visible {
+			outline: 3px solid $font-color;
+			outline-offset: 4px;
+		}
+	}
 }

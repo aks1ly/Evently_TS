@@ -1,74 +1,26 @@
-include mixins.pug
 section.order-services
-    .order-services__layout
-
-        // Ліва частина — категорії
-        aside.order-services__sidebar
-            h2.order-services__sidebar-title Категорії послуг
-
-            .order-services__categories
-                .order-services__category.order-services__category--active
-                    img(src="/images/service-microphone.png" alt="")
-                    span Ведучі
-
-                .order-services__category
-                    img(src="/images/service-camera.png" alt="")
-                    span Фотографи
-
-                .order-services__category
-                    img(src="/images/service-catering-icon.png" alt="")
-                    span Кейтеринг
-
-        // Права частина
-        .order-services__main
-
-            // Картки ведучих
-            .order-services__catalog
-                -
-                    const services = [
-                        {
-                            name: "Олександр Коваль",
-                            image: "/images/host-oleksandr.png",
-                            rating: "4.9 (124)",
-                            description: "Професійний ведучий із досвідом понад 8 років. Створює невимушену атмосферу на весіллях, днях народження та корпоративних заходах.",
-                            price: "8 000",
-                            selected: true
-                        },
-                        {
-                            name: "Марія Іваненко",
-                            image: "/images/host-mariia.png",
-                            rating: "4.8 (101)",
-                            description: "Харизматична ведуча, яка поєднує сучасні розважальні програми з індивідуальним підходом до кожного свята.",
-                            price: "7 500",
-                            selected: false
-                        },
-                        {
-                            name: "Дмитро Соловей",
-                            image: "/images/host-dmytro.png",
-                            rating: "4.7 (67)",
-                            description: "Енергійний ведучий із креативним підходом до організації свят. Проводить інтерактивні конкурси та легко знаходить спільну мову з гостями.",
-                            price: "6 800",
-                            selected: false
-                        }
-                    ]
-
-                each service in services
-                    +serviceCard(service)
-
-            // Нижня частина
-            .order-services__summary
-
-                // Обрані послуги
-                .order-services__selected
-                    h2.order-services__selected-title Обрані послуги (2)
-
-                    +selectedService("Олександр Коваль", "Ведучий", "/images/host-oleksandr.png", "8 000")
-                    +selectedService("Вероніка Бойко", "Фотограф", "/images/photographer-veronika.png", "7 000")
-
-                // Вартість і перехід
-                .order-services__checkout
-                    .order-services__total
-                        h2 Загальна вартість послуг:
-                        strong 15 000 грн
-
-                    a.order-services__next(href="/order-confirmation.html") Далі →
+	.order-services__layout
+		aside.order-services__sidebar
+			h2.order-services__sidebar-title Категорії послуг
+			.order-services__categories
+				button.order-services__category.order-services__category--active(type="button" data-service-tab="host" aria-pressed="true")
+					img(src="/images/service-microphone.png" data-icon-default="/images/service-microphone.png" data-icon-active="/images/service-microphone-active.png" alt="")
+					span Ведучі
+				button.order-services__category(type="button" data-service-tab="photographer" aria-pressed="false")
+					img(src="/images/service-camera.png" data-icon-default="/images/service-camera.png" data-icon-active="/images/service-camera-active.png" alt="")
+					span Фотографи
+				button.order-services__category(type="button" data-service-tab="catering" aria-pressed="false")
+					img(src="/images/service-catering-icon.png" data-icon-default="/images/service-catering-icon.png" data-icon-active="/images/service-catering-icon-active.png" alt="")
+					span Кейтеринг
+		.order-services__main
+			p.order-services__status#servicesStatus Завантаження послуг...
+			.order-services__catalog#servicesCatalog
+			.order-services__summary
+				.order-services__selected
+					h2.order-services__selected-title#servicesSelectedTitle Обрані послуги (0)
+					.order-services__selected-list#servicesSelectedList
+				.order-services__checkout
+					.order-services__total
+						h2 Загальна вартість послуг:
+						strong#servicesTotal 0 грн
+					a.order-services__next(href="/order-confirmation.html") Далі →

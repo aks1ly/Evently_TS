@@ -8,7 +8,7 @@ section.order-locations
             .order-locations__options
                 each type, index in ["Ресторан", "Банкетний зал", "Заміський комплекс", "Лофт", "Відкрита територія", "Інше"]
                     label.order-locations__checkbox
-                        input(type="checkbox" name="locationType" value=type checked=index === 0)
+                        input(type="checkbox" name="locationType" value=["restaurant", "banquet", "country", "loft", "outdoor", "other"][index] )
                         span= type
 
             .order-locations__price
@@ -17,34 +17,33 @@ section.order-locations
                     span Орієнтовна ціна
 
                 .order-locations__range
-                    input(type="range" id="minPriceRange" min="1000" max="50000" value="1000" step="1000")
-                    input(type="range" id="maxPriceRange" min="1000" max="50000" value="26000" step="1000")
+                    input(type="range" id="minPriceRange" min="10000" max="50000" value="10000" step="1000")
+                    input(type="range" id="maxPriceRange" min="10000" max="50000" value="50000" step="1000")
 
                 .order-locations__limits
-                    span 1 000
-                    span 50 000+
+                    span 10 000
+                    span 50 000
 
                 .order-locations__price-fields
                     label Від
                         .order-locations__price-input
-                            input(type="number" id="minPrice" value="1000" min="1000")
+                            input(type="number" id="minPrice" value="10000" min="10000")
                             span грн
 
                     label до
                         .order-locations__price-input
-                            input(type="number" id="maxPrice" value="26000" min="1000")
+                            input(type="number" id="maxPrice" value="50000" min="10000")
                             span грн
 
             h2.order-locations__heading Додатково
 
             .order-locations__options
-                each option in ["Дитяча зона", "Власний кейтеринг", "Паркування"]
+                each option, index in ["Дитяча зона", "Власний кейтеринг", "Паркування"]
                     label.order-locations__checkbox
-                        input(type="checkbox" name="features" value=option)
+                        input(type="checkbox" name="features" value=["kids", "catering", "parking"][index])
                         span= option
 
-        .order-locations__list
-            - const locations = [{name: "Forrest Club", image: "/images/forrest-club.png", address: "Київ, Литовський проспект, 20а", guests: 45, description: "Затишний заміський ресторан серед природи, що ідеально підходить для весіль, сімейних свят та урочистих подій.", price: "25 000"}, {name: "River Grill", image: "/images/river-grill.png", address: "Київ, Русанівська набережна, 3а", guests: 100, description: "Стильний ресторан на березі Дніпра з мальовничими краєвидами. Чудове місце для святкувань у теплій та романтичній атмосфері.", price: "18 000"}, {name: "Штандарт", image: "/images/shtandart.png", address: "Київ, вул. Ревуцького, 2Г", guests: 200, description: "Просторий ресторан біля озера, який підходить для банкетів, корпоративів та масштабних святкувань.", price: "12 000"}]
-
-            each location in locations
-                +locationCard(location)
+        .order-locations__results
+            p.order-locations__count#locationsCount(aria-live="polite")
+            .order-locations__list#locationsList(aria-live="polite")
+                p.order-locations__status#locationStatus Завантаження локацій...
